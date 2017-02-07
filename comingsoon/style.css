@@ -1,0 +1,44 @@
+* {
+	margin:0;
+	padding:0;
+	text-decoration: none;
+
+	font-size: 14px;
+	color: #555555;
+
+	font-family: 'Source Code Pro', monospace, Helvetica Neue,Helvetica,Arial,sans-serif;
+	line-height: 1.5;
+}
+
+a {
+	color: inherit;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+body {
+	background-color: #fff;
+}
+
+section#welcome {
+	position:absolute;
+	top:0; left:0;
+	width:100%;
+	height:100%;
+	display: table;
+}
+
+section#welcome div {
+	vertical-align:middle;
+	display:table-cell;
+	text-align:center;
+}
+
+section#welcome div img {
+	max-width: 100%;
+}
+
+section#welcome h1 {
+	font-size: 50px;
+}

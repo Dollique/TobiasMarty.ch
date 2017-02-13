@@ -1,12 +1,12 @@
 <?php
-class Controller {
+class pagesController {
     private $model;
-
-    public function __construct(Model $model) {
+    
+    public function __construct(pagesModel $model) {
         $this->model = $model;
     }
-	
-	public function textClicked() {
+    
+    public function textClicked() {
         $this->model->text = 'Text Updated';
     }
 }

@@ -6,8 +6,10 @@ class pagesController {
         $this->model = $model;
     }
     
-    public function textClicked() {
-        $this->model->text = 'Text Updated';
+    public function someAction() {
+        // some user action was triggered by URL action=someAction
+		
+		return "UserAction";
     }
 }
 ?>

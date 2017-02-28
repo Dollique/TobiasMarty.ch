@@ -8,7 +8,11 @@ class pagesView {
 	
     public function renderPage() {
 		$page = $this->model->loadPage(1);
-		return $page->content;
+		return $page["content"];
     }
+	
+	public function output() {
+		return $this->renderPage();
+	}
 }
 ?>

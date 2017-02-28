@@ -1,28 +1,48 @@
 <?php
 class FrontController {
     public $pdo;
-	private $controller, $view;
+	private $route, $model, $controller, $view;
 	
 	public function __construct(Router $router, $routeName, $action = null) {
 		$this->pdo = new PDO('mysql:host=localhost;dbname=tobiasmarty', 'root', '');
 		
 		//Fetch a route based on a name, e.g. "search" or "list" or "edit"
-		$route = $router->getRoute($routeName);
+		$this->route = $router->getRoute($routeName);
 
 		//Fetch the names of each component from the router
-		$modelName = $route->model;
-		$controllerName = $route->controller;
-		$viewName = $route->view;
+		$modelName = $this->getName($this->route, "model");
+		$controllerName = $this->getName($this->route, "controller");;
+		$viewName = $this->getName($this->route, "view");;
 
 		//Instantiate each component
-		$model = new $modelName;
-		$this->controller = new $controllerName($model);
-		$this->view = new $viewName($routeName, $model);
-
+		//$this->model = $this->createObj($modelName); // OR: $model = new $modelName; ????
+		$this->model = new $modelName($this->pdo);
+		$this->controller = new $controllerName($this->model);
+		$this->view = new $viewName($this->model);
+		
 		//Run the controller action
-		if(!empty($action)) $this->controller->{$action}();
+		if(!empty($action) && method_exists($this->controller, $action)) $this->controller->{$action}();
 	}
-
+	
+	private function getName($route, $mvc) {
+		switch($mvc) {
+			case "model": return $route->model;
+			case "controller": return $route->controller;
+			case "view": return $route->view;
+		}
+	}
+	
+	public function getModel() {
+		return $this->model;
+	}
+	public function getController() {
+		return $this->controller;
+	}
+	public function getView() {
+		return $this->view;
+	}
+	
+	
 	public function output() {
 		//Finally a method for outputting the data from the view 
 		//This allows for some consistent layout generation code such as a page header/footer
@@ -36,7 +56,7 @@ class Router {
 	
     public function __construct() {
 		$this->table['pages'] = new Route('pagesModel', 'pagesView', 'pagesController');  
-		$this->table['someotherroute'] = new Route('OtherModel', 'OtherView', 'OtherController');  
+		//$this->table['someotherroute'] = new Route('OtherModel', 'OtherView', 'OtherController');  
     }
 	
     public function getRoute($route) {
@@ -44,6 +64,7 @@ class Router {
         return $this->table[$route_lc];       
     }
 }
+
 class Route {
     public $model;
     public $view;

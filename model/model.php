@@ -3,7 +3,7 @@ class pagesModel {
 	private $pdo;
 	private $page;
 	
-	public function __construct(PDO $pdo) {
+	public function __construct(PDO $pdo) { // (PDO $pdo)
 		$this->pdo = $pdo;
 	}
 	

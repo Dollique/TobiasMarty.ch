@@ -38,10 +38,10 @@ class FrontController {
 	
 	
 	public function output() {
-		//Finally a method for outputting the data from the view 
-		//This allows for some consistent layout generation code such as a page header/footer
-		$header = '<h1>Hello world example</h1>';
-		return $header . '<div>' . $this->view->output() . '</div>';
+		$header = $this->view->getTemplate();
+		$footer = $this->view->getTemplate("footer");
+		
+		return $header . $this->view->output() . $footer;
 	}
 }
 
@@ -50,7 +50,7 @@ class Router {
     private $table = array();
 	
     public function __construct() {
-		$this->table['pages'] = new Route('pagesModel', 'pagesView', 'pagesController');  
+		$this->table['pages'] = new Route('pagesModel', 'pagesView', 'pagesController');
 		//$this->table['someotherroute'] = new Route('OtherModel', 'OtherView', 'OtherController');
     }
 	

@@ -9,30 +9,20 @@ class pagesView {
         $this->model = $model;
     }
 	
-    public function renderPage() {
+    private function renderPage() {
 		$page = $this->model->loadPage(1);
 		return $page["content"];
     }
 	
-	public function getTemplate() {
+	public function getTemplate($section = "header", $tpl = TPL_DEFAULT) {
+		$getTPL = new template($tpl);
+		$renderTPL = $getTPL->render($section);
 		
+		return $renderTPL;
 	}
 	
 	public function output() {
 		return $this->renderPage();
-	}
-}
-
-
-class Template {
-	public $template;
-	
-	public function __construct($template) {
-		$this->template = $template;
-	}
-	
-	public function returnTemplate() {
-		return $this->template;
 	}
 }
 

@@ -7,7 +7,7 @@ class FrontController {
 	private $route, $model, $controller, $view;
 	
 	public function __construct(Router $router, $routeName, $action = null) {
-		$this->pdo = new \PDO('mysql:host=localhost;dbname=tobiasmarty', 'root', '');
+		$this->pdo = new \PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
 		
 		//Fetch a route based on a name, e.g. "search" or "list" or "edit"
 		$this->route = $router->getRoute($routeName);

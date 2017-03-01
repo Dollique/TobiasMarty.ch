@@ -1,4 +1,5 @@
 <?php
+	require_once("../config.php");
 	require_once("../../autoloader.php");
 	
 	$route = isset($_GET['route']) ? $_GET['route'] : null;

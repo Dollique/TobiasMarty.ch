@@ -2,10 +2,10 @@
 
 namespace app\controller;
 
-class pagesController {
+class pages {
     private $model;
     
-    public function __construct(\app\model\pagesModel $model) {
+    public function __construct(\app\model\pages $model) {
         $this->model = $model;
     }
     

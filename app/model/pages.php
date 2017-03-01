@@ -2,7 +2,7 @@
 
 namespace app\model;
 
-class pagesModel {
+class pages {
 	private $pdo;
 	private $page;
 	

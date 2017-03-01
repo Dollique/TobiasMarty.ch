@@ -2,15 +2,15 @@
 
 namespace app\view;
 
-class pagesView {
+class pages {
     private $model;
 	
-    public function __construct(\app\model\pagesModel $model) {
+    public function __construct(\app\model\pages $model) {
         $this->model = $model;
     }
 	
     private function renderPage() {
-		$page = $this->model->loadPage(1);
+		$page = $this->model->loadPage(1); // TODO: decide which page to load using Routing (URLs)
 		return $page["content"];
     }
 	

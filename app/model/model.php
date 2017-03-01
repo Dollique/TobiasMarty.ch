@@ -1,9 +1,12 @@
 <?php
+
+namespace TobiasMarty\models;
+
 class pagesModel {
 	private $pdo;
 	private $page;
 	
-	public function __construct(PDO $pdo) { // (PDO $pdo)
+	public function __construct(\PDO $pdo) { // (PDO $pdo)
 		$this->pdo = $pdo;
 	}
 	

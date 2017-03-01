@@ -7,7 +7,7 @@
 	$route = isset($_GET['route']) ? $_GET['route'] : null;
 	$action = isset($_GET['action']) ? $_GET['action'] : null;
 	
-	$fc = new FrontController(new Router, $route, $action);
+	$fc = new TobiasMarty\FrontController(new TobiasMarty\Router, $route, $action);
 	
 	//$model = $fc->getModel();
 	//$controller = $fc->getController();

@@ -1,35 +1,29 @@
 <?php
+
+namespace TobiasMarty;
+
 class FrontController {
     public $pdo;
 	private $route, $model, $controller, $view;
 	
 	public function __construct(Router $router, $routeName, $action = null) {
-		$this->pdo = new PDO('mysql:host=localhost;dbname=tobiasmarty', 'root', '');
+		$this->pdo = new \PDO('mysql:host=localhost;dbname=tobiasmarty', 'root', '');
 		
 		//Fetch a route based on a name, e.g. "search" or "list" or "edit"
 		$this->route = $router->getRoute($routeName);
 
 		//Fetch the names of each component from the router
-		$modelName = $this->getName($this->route, "model");
-		$controllerName = $this->getName($this->route, "controller");;
-		$viewName = $this->getName($this->route, "view");;
+		$modelName = "\TobiasMarty\models\\".$this->route->model;
+		$controllerName = "\TobiasMarty\controllers\\".$this->route->controller;
+		$viewName = "\TobiasMarty\\views\\".$this->route->view;
 
 		//Instantiate each component
-		//$this->model = $this->createObj($modelName); // OR: $model = new $modelName; ????
 		$this->model = new $modelName($this->pdo);
 		$this->controller = new $controllerName($this->model);
 		$this->view = new $viewName($this->model);
 		
 		//Run the controller action
 		if(!empty($action) && method_exists($this->controller, $action)) $this->controller->{$action}();
-	}
-	
-	private function getName($route, $mvc) {
-		switch($mvc) {
-			case "model": return $route->model;
-			case "controller": return $route->controller;
-			case "view": return $route->view;
-		}
 	}
 	
 	public function getModel() {
@@ -60,7 +54,7 @@ class Router {
     }
 	
     public function getRoute($route) {
-        if(empty($rout)) $route = "pages"; // Set Default Route here!
+        if(empty($route)) $route = "pages"; // Set Default Route here!
 		
 		$route_lc = strtolower($route);
         return $this->table[$route_lc];

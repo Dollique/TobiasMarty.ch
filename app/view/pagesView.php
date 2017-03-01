@@ -1,11 +1,11 @@
 <?php
 
-namespace TobiasMarty\views;
+namespace app\view;
 
 class pagesView {
     private $model;
 	
-    public function __construct(\TobiasMarty\models\pagesModel $model) {
+    public function __construct(\app\model\pagesModel $model) {
         $this->model = $model;
     }
 	

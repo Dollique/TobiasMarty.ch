@@ -1,11 +1,11 @@
 <?php
 
-namespace TobiasMarty\controllers;
+namespace app\controller;
 
 class pagesController {
     private $model;
     
-    public function __construct(\TobiasMarty\models\pagesModel $model) {
+    public function __construct(\app\model\pagesModel $model) {
         $this->model = $model;
     }
     

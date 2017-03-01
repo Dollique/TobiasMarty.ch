@@ -1,13 +1,10 @@
 <?php
-	require_once("../frontcontroller.php");
-	require_once("../model/model.php");
-	require_once("../view/view.php");
-	require_once("../controller/controller.php");
+	require_once("../../autoloader.php");
 	
 	$route = isset($_GET['route']) ? $_GET['route'] : null;
 	$action = isset($_GET['action']) ? $_GET['action'] : null;
 	
-	$fc = new TobiasMarty\FrontController(new TobiasMarty\Router, $route, $action);
+	$fc = new app\FrontController(new app\Router, $route, $action);
 	
 	//$model = $fc->getModel();
 	//$controller = $fc->getController();

@@ -1,6 +1,6 @@
 <?php
 
-namespace TobiasMarty\models;
+namespace app\model;
 
 class pagesModel {
 	private $pdo;

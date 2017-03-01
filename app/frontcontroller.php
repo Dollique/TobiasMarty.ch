@@ -1,6 +1,6 @@
 <?php
 
-namespace TobiasMarty;
+namespace app;
 
 class FrontController {
     public $pdo;
@@ -13,9 +13,9 @@ class FrontController {
 		$this->route = $router->getRoute($routeName);
 
 		//Fetch the names of each component from the router
-		$modelName = "\TobiasMarty\models\\".$this->route->model;
-		$controllerName = "\TobiasMarty\controllers\\".$this->route->controller;
-		$viewName = "\TobiasMarty\\views\\".$this->route->view;
+		$modelName = "\app\model\\".$this->route->model;
+		$controllerName = "\app\controller\\".$this->route->controller;
+		$viewName = "\app\\view\\".$this->route->view;
 
 		//Instantiate each component
 		$this->model = new $modelName($this->pdo);
@@ -44,6 +44,7 @@ class FrontController {
 		return $header . '<div>' . $this->view->output() . '</div>';
 	}
 }
+
 
 class Router {
     private $table = array();

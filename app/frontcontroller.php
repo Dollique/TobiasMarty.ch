@@ -11,7 +11,7 @@ class FrontController {
 		
 		//Fetch a route based on a name, e.g. "search" or "list" or "edit"
 		$this->route = $router->getRoute($routeName);
-
+		
 		//Fetch the names of each component from the router
 		$modelName = "\app\model\\".$this->route->model;
 		$controllerName = "\app\controller\\".$this->route->controller;
@@ -54,10 +54,14 @@ class Router {
     }
 	
     public function getRoute($route) {
-        if(empty($route)) $route = "pages"; // Set Default Route here!
+        $defroute = "pages"; // Set Default Route here!
+		if(empty($route)) $route = $defroute;
 		
 		$route_lc = strtolower($route);
-        return $this->table[$route_lc];
+		
+		$route_table = (isset($this->table[$route_lc]) ? $this->table[$route_lc] : $this->table[$defroute]);
+		
+        return $route_table;
     }
 }
 

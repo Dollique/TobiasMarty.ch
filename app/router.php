@@ -11,16 +11,15 @@ class Router {
     }
 	
     public function getRoute($route) {
-        $defroute = "pages"; // Set Default Route here!
-		if(empty($route)) $route = $defroute;
+		if(empty($route)) $route = DEF_ROUTE;
 		
 		$route_lc = strtolower($route);
-		
-		$route_table = (isset($this->table[$route_lc]) ? $this->table[$route_lc] : $this->table[$defroute]);
+		$route_table = (isset($this->table[$route_lc]) ? $this->table[$route_lc] : $this->table[DEF_ROUTE]);
 		
         return $route_table;
     }
 }
+
 
 class Route {
     public $model;

@@ -6,6 +6,8 @@
 	const DB_USER = 'root';
 	const DB_PASS = '';
 	
+	const DEF_ROUTE = 'pages';
+	
 	const TPL_PATH = 'templates/';
 	const TPL_DEFAULT = 'default';
 	

@@ -10,7 +10,7 @@ class pages {
     }
 	
     private function renderPage() {
-		$page = $this->model->loadPage(1); // TODO: decide which page to load using Routing (URLs)
+		$page = $this->model->loadPage(1); // *!* TODO: decide which page to load using Routing (URLs)
 		return $page["content"];
     }
 	

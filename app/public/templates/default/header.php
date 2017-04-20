@@ -3,6 +3,8 @@
 <head>
     <title></title>
 	
+	<base href="<?=BASE_DIR;?>">
+	
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="description" content="">
     

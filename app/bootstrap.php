@@ -19,5 +19,4 @@
 	echo $fc->output();
 	
 	echo "<br><br>".$route;
-	echo "<br><br>".var_dump($_SERVER);
 ?>

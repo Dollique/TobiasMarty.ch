@@ -17,4 +17,7 @@
 	//if(isset($_GET['action']) && method_exists($controller, $_GET['action'])) $controller->{$_GET['action']}();
 	
 	echo $fc->output();
+	
+	echo "<br><br>".$route;
+	echo "<br><br>".var_dump($_SERVER);
 ?>

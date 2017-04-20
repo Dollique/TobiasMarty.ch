@@ -5,7 +5,7 @@
 		# Usually I would just concatenate directly to $file variable below
 		# this is just for easy viewing on Stack Overflow)
 		$ds = DIRECTORY_SEPARATOR;
-		$dir = __DIR__;
+		$dir = realpath(__DIR__ .DS .'..'); // changed this because I didn't put the autoloader.php in root.
 
 		// replace namespace separator with directory separator (prolly not required)
 		$className = str_replace('\\', $ds, $className);

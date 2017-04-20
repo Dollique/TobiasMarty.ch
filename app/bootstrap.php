@@ -3,7 +3,7 @@
 	use app\Router;
 	
 	require_once("../config.php");
-	require_once("../../autoloader.php");
+	require_once("../../vendor/autoloader.php");
 	
 	$route = isset($_GET['route']) ? $_GET['route'] : null;
 	$action = isset($_GET['action']) ? $_GET['action'] : null;

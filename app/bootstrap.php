@@ -2,8 +2,8 @@
 	use app\FrontController;
 	use app\Router;
 	
-	require_once("../config.php");
-	require_once("../../vendor/autoloader.php");
+	require_once(__DIR__ . "/config.php");
+	require_once(realpath(__DIR__ .DS.'..') . "/vendor/autoloader.php");
 	
 	$route = isset($_GET['route']) ? $_GET['route'] : null;
 	$action = isset($_GET['action']) ? $_GET['action'] : null;

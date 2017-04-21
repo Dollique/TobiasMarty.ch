@@ -4,13 +4,14 @@ namespace app\core;
 
 class FrontController {
     public $pdo;
-	private $route, $model, $controller, $view;
+	private $route, $routeName, $model, $controller, $view;
 	
 	public function __construct(Router $router, $routeName, $action = null) {
 		$this->pdo = new \PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
 		
 		//Fetch a route based on a name, e.g. "search" or "list" or "edit"
 		$this->route = $router->getRoute($routeName);
+		$this->routeName = $routeName;
 		
 		//Fetch the names of each component from the router
 		$modelName = "\app\model\\".$this->route->model;
@@ -24,6 +25,10 @@ class FrontController {
 		
 		//Run the controller action
 		if(!empty($action) && method_exists($this->controller, $action)) $this->controller->{$action}();
+	}
+	
+	public function getRouteName() {
+		return $this->routeName;
 	}
 	
 	public function getModel() {
@@ -41,6 +46,6 @@ class FrontController {
 		$header = $this->view->getTemplate();
 		$footer = $this->view->getTemplate("footer");
 		
-		return $header . $this->view->output() . $footer;
+		return $header . $this->view->output($this->routeName) . $footer;
 	}
 }

@@ -9,9 +9,9 @@ class pages {
         $this->model = $model;
     }
 	
-    private function renderPage() {
-		$page = $this->model->loadPage(1); // *!* TODO: decide which page to load using Routing (URLs)
-		return $page["content"];
+    private function renderPage($alias) {
+		$page = $this->model->loadPage($alias);
+		return "<h1>".$page["title"]."</h1>" . $page["content"];
     }
 	
 	public function getTemplate($section = "header", $tpl = TPL_DEFAULT) {
@@ -21,7 +21,13 @@ class pages {
 		return $renderTPL;
 	}
 	
-	public function output() {
-		return $this->renderPage();
+	public function output($routeName) {
+		if(!empty($routeName)) {
+			$routeA = explode("/", $routeName);
+		}
+		
+		$alias = $routeA[0];
+		
+		return $this->renderPage($alias);
 	}
 }

@@ -10,9 +10,9 @@ class pages {
 		$this->pdo = $pdo;
 	}
 	
-	public function loadPage($id) {
-		$stmt = $this->pdo->prepare('SELECT * FROM pages');
-		$stmt->execute([$id]);
+	public function loadPage($alias) {
+		$stmt = $this->pdo->prepare('SELECT title, content FROM pages WHERE alias = "' . $alias . '";');
+		$stmt->execute([$alias]);
 		return $stmt->fetch();
 	}
 	

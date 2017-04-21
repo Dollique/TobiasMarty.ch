@@ -12,14 +12,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/tobiasmarty.ch/app/model/pages.php</file>
-            <file>file:/C:/xampp/htdocs/tobiasmarty.ch/app/public/templates/default/header.php</file>
-            <file>file:/C:/xampp/htdocs/tobiasmarty.ch/app/public/templates/default/style.css</file>
-            <file>file:/C:/xampp/htdocs/tobiasmarty.ch/app/bootstrap.php</file>
-            <file>file:/C:/xampp/htdocs/tobiasmarty.ch/app/config.php</file>
-            <file>file:/C:/xampp/htdocs/tobiasmarty.ch/app/public/.htaccess</file>
-            <file>file:/C:/xampp/htdocs/tobiasmarty.ch/app/frontcontroller.php</file>
-            <file>file:/C:/xampp/htdocs/tobiasmarty.ch/app/view/pages.php</file>
+            <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/core/bootstrap.php</file>
+            <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/core/frontcontroller.php</file>
+            <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/model/pages.php</file>
+            <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/view/pages.php</file>
         </group>
     </open-files>
 </project-private>

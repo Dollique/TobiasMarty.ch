@@ -11,8 +11,36 @@ class pages {
 	
     private function renderPage($alias) {
 		$page = $this->model->loadPage($alias);
-		return "<h1>".$page["title"]."</h1>" . $page["content"];
+		return $page;
     }
+	
+	private function renderNav($alias) {
+		$nav = $this->model->loadPage($alias);
+		$navRet = $this->createNav($nav);
+		
+		return $navRet;
+	}
+	
+	private function createNav($data) {
+		// *!* Create Nav
+		$getNavP = array();
+		
+		var_dump($data); // *!* test
+		
+		foreach($data as $d) {
+			$getNavP[] = $this->model->loadPage($d, "fk_page");
+		}
+		
+		return $getNavP;
+	}
+	
+	private function getAlias($routeName) {
+		if(!empty($routeName)) {
+			$routeA = explode("/", $routeName);
+		}
+		
+		return $routeA[0];
+	}
 	
 	public function getTemplate($section = "header", $tpl = TPL_DEFAULT) {
 		$getTPL = new template($tpl);
@@ -21,13 +49,12 @@ class pages {
 		return $renderTPL;
 	}
 	
-	public function output($routeName) {
-		if(!empty($routeName)) {
-			$routeA = explode("/", $routeName);
+	public function output($routeName, $table = "pages") {
+		$alias = $this->getAlias($routeName);
+		
+		switch ($table) {
+			case "pages": return $this->renderPage($alias);
+			case "nav":return $this->renderNav($alias);
 		}
-		
-		$alias = $routeA[0];
-		
-		return $this->renderPage($alias);
 	}
 }

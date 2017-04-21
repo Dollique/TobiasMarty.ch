@@ -46,6 +46,15 @@ class FrontController {
 		$header = $this->view->getTemplate();
 		$footer = $this->view->getTemplate("footer");
 		
-		return $header . $this->view->output($this->routeName) . $footer;
+		$nav = $this->view->output($this->routeName, "nav");
+		
+		var_dump($nav); // *!* test
+		
+		$page = $this->view->output($this->routeName);
+		
+		$title = $page["title"];
+		$content = $page["content"];
+		
+		return $header . "<h1>" . $title . "</h1>" . $content . $footer;
 	}
 }

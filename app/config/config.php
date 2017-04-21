@@ -1,18 +1,10 @@
 <?php
 
 // database config
-if($_SERVER['DOCUMENT_ROOT'] == "C:/xampp/htdocs") { // if local
-	define('DB_HOST','localhost');
-	define('DB_NAME','tobiasmarty');
-	define('DB_USER','root');
-	define('DB_PASS','');
-}
-else {
-	define('DB_HOST','localhost');
-	define('DB_NAME','tobiasmarty');
-	define('DB_USER','root');
-	define('DB_PASS','');
-}
+define('DB_HOST','localhost');
+define('DB_NAME','tobiasmarty_ch');
+define('DB_USER','root');
+define('DB_PASS','');
 
 // Path config
 if(!defined('DS')) define('DS', DIRECTORY_SEPARATOR);

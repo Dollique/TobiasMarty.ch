@@ -44,5 +44,3 @@ class FrontController {
 		return $header . $this->view->output() . $footer;
 	}
 }
-
-?>

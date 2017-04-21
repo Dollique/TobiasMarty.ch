@@ -25,5 +25,3 @@ class pages {
 		return $this->renderPage();
 	}
 }
-
-?>

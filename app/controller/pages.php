@@ -15,4 +15,3 @@ class pages {
 		return "UserAction";
     }
 }
-?>

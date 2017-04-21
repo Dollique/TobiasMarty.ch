@@ -32,5 +32,3 @@ class Route {
         $this->controller = $controller;
     }
 }
-
-?>

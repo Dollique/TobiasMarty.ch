@@ -10,10 +10,13 @@ spl_autoload_register(function ($className) {
 
 	// replace namespace separator with directory separator (prolly not required)
 	$className = str_replace('\\', $ds, $className);
-
+	
+	$className = strtolower($className); // all files must be lowercase!
+	
 	// get full name of file containing the required class
 	$file = "{$dir}{$ds}{$className}.php";
-
+	
 	// get file if it is readable
 	if (is_readable($file)) require_once $file;
+	else trigger_error("is_readable() failed: '" . $file . "'<br>", E_USER_ERROR);
 });

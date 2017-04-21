@@ -4,6 +4,7 @@ use app\core\FrontController;
 use app\core\Router;
 
 require_once(realpath(__DIR__ .DS.'..') . "/config/config.php");
+require_once(realpath(__DIR__ .DS.'..') . "/config/db.php");
 require_once(realpath(__DIR__ .DS.'..'.DS.'..') . "/vendor/autoloader.php");
 
 $route = isset($_GET['route']) ? $_GET['route'] : null;

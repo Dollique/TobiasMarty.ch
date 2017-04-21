@@ -1,15 +1,9 @@
 <?php
 
-// database config
-define('DB_HOST','localhost');
-define('DB_NAME','tobiasmarty_ch');
-define('DB_USER','root');
-define('DB_PASS','');
-
 // Path config
 if(!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
 
-if($_SERVER['DOCUMENT_ROOT'] == "C:/xampp/htdocs") { // if local
+if($_SERVER['DOCUMENT_ROOT'] == "C:/xampp/htdocs") { // if local *!* bad practise!
 	define('BASE_DIR', "//localhost".dirname($_SERVER['SCRIPT_NAME']).DS);
 }
 else define('BASE_DIR', DS); // *!* TO BE TESTED!

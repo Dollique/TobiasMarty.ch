@@ -17,10 +17,10 @@ class pages {
 		return $stmt->fetch();
 	}
 	
-	public function loadNav($alias) {
-		$stmt = $this->pdo->prepare("SELECT fk_page, fk_parentpage FROM pages WHERE alias = '" . $alias . "';");
-		$stmt->execute([$alias]);
-		return $stmt->fetch();
+	public function loadNav($parent) {
+		$stmt = $this->pdo->prepare("SELECT fk_page FROM nav WHERE fk_parentpage = " . $parent . ";");
+                $stmt->execute();
+		return $stmt->fetchAll();
 	}
 
 

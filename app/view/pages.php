@@ -4,9 +4,11 @@ namespace app\view;
 
 class pages {
     private $model;
+    private $navArr;
 	
     public function __construct(\app\model\pages $model) {
         $this->model = $model;
+        $this->navArr = array();
     }
 	
     private function renderPage($alias) {
@@ -15,23 +17,31 @@ class pages {
     }
 	
 	private function renderNav($alias) {
-		$nav = $this->model->loadPage($alias);
-		$navRet = $this->createNav($nav);
+		$nav = $this->model->loadPage($alias); // get page data from database *!* use later for 'current' class
+		$navRet = $this->createNav(); // $nav
 		
+                echo "<pre> RESULT: ---";
+                var_dump($navRet);
+                echo "</pre>";
+                
 		return $navRet;
 	}
 	
-	private function createNav($data) {
-		// *!* Create Nav
-		$getNavP = array();
-		
-		var_dump($data); // *!* test
-		
-		foreach($data as $d) {
-			$getNavP[] = $this->model->loadPage($d, "fk_page");
-		}
-		
-		return $getNavP;
+	private function createNav($parent = 0, $sub = false) {
+            // *!* Create Nav
+            $getNavPage = $this->model->loadNav($parent);
+            
+            foreach ($getNavPage as $getPage) {
+                
+                $NavPage = intval($getPage["fk_page"]);
+                
+                $this->createNav($NavPage, true);
+                
+                if($sub === false) $this->navArr[$parent][] = $NavPage;
+                else $this->navArr[$parent][][] = $NavPage;
+            }
+            
+            return $this->navArr;
 	}
 	
 	private function getAlias($routeName) {
@@ -54,7 +64,7 @@ class pages {
 		
 		switch ($table) {
 			case "pages": return $this->renderPage($alias);
-			case "nav":return $this->renderNav($alias);
+                        case "nav": return $this->renderNav($alias);
 		}
 	}
 }

@@ -4,11 +4,9 @@ namespace app\view;
 
 class pages {
     private $model;
-    private $navArr;
 	
     public function __construct(\app\model\pages $model) {
         $this->model = $model;
-        $this->navArr = array();
     }
 	
     private function renderPage($alias) {
@@ -21,27 +19,26 @@ class pages {
 		$navRet = $this->createNav(); // $nav
 		
                 echo "<pre> RESULT: ---";
-                var_dump($navRet);
+                print_r($navRet);
                 echo "</pre>";
-                
-		return $navRet;
 	}
 	
-	private function createNav($parent = 0, $sub = false) {
+        // I got help on SO: https://stackoverflow.com/questions/45940902/recursive-nested-navigation-with-php/45947793
+	private function createNav($parent = 0) {
             // *!* Create Nav
-            $getNavPage = $this->model->loadNav($parent);
+            $getNavPage = $this->model->loadNav($parent); // array of menu items (fk_page) that have $parent as parent.
             
-            foreach ($getNavPage as $getPage) {
+            if(empty($getNavPage)) return $parent; // if there is no more child then return the $parent as an INT
+            
+            /* start child-nav */
+            $NavPage = 0;
+            foreach ($getNavPage as $key => $getPage) {
+                $NavPage = intval($getPage["fk_page"]); // make sure fk_page is an int
                 
-                $NavPage = intval($getPage["fk_page"]);
-                
-                $this->createNav($NavPage, true);
-                
-                if($sub === false) $this->navArr[$parent][] = $NavPage;
-                else $this->navArr[$parent][][] = $NavPage;
+                $getNavPage[$key] = $this->createNav($NavPage); // get childs (recursive loop)
             }
             
-            return $this->navArr;
+            return array($parent => $getNavPage); // returns an array of the sub nav (child-navigation)
 	}
 	
 	private function getAlias($routeName) {

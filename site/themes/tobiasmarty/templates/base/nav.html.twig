@@ -1,0 +1,60 @@
+{% macro loop(page) %}
+    {% for p in page.children.visible %}
+        {% set current_page = (p.active or p.activeChild) ? 'active' : '' %}
+        {% if p.children.visible.count > 0 %}
+            <li class="has-children {{ current_page }}">
+                <a href="{{ p.url }}">
+                    <div>
+						{% if p.header.image %}<img src="{{ p.url }}/{{ p.header.image }}">{% endif %}
+						<span>{{ p.menu }}</span>
+					</div>
+                </a>
+                <ul>
+                    {{ _self.loop(p) }}
+                </ul>
+            </li>
+        {% else %}
+            <li class="{{ current_page }}">
+                <a href="{{ p.url }}">
+					<div>
+						{% if p.header.image %}<img src="{{ p.url }}/{{ p.header.image }}">{% endif %}
+						 <span>{{ p.menu }}</span>
+					</div>
+                </a>
+            </li>
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+
+<ul class="navigation">
+    {% if theme_config.dropdown.enabled %}
+        {{ _self.loop(pages) }}
+    {% else %}
+        {% for page in pages.children.visible %}
+            {% set current_page = (page.active or page.activeChild) ? 'active' : '' %}
+            <li class="{{ current_page }}">
+                <a href="{{ page.url }}">
+					<div>
+						{% if page.header.image %}<img src="{{ p.url }}/{{ p.header.image }}">{% endif %}
+						 <span>{{ p.menu }}</span>
+					 </div>
+                </a>
+            </li>
+        {% endfor %}
+    {% endif %}
+    {% for mitem in site.menu %}
+        <li>
+            <a href="{{ mitem.url }}">
+                <div>
+					{% if mitem.image %}<img src="{{ p.url }}/{{ p.header.image }}">{% endif %}
+					<span>{{ mitem.text }}</span>
+				</div>
+            </a>
+        </li>
+    {% endfor %}
+    {% if config.plugins.login.enabled and grav.user.username %}
+        <li><i class="fa fa-lock"></i> {% include 'partials/login-status.html.twig' %}</li>
+    {% endif %}
+</ul>
+

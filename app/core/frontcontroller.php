@@ -4,7 +4,7 @@ namespace app\core;
 
 class FrontController {
     public $pdo;
-	private $route, $routeName, $model, $controller, $view;
+	private $route, $routeName, $model, $controller, $view, $twig;
 	
 	public function __construct(Router $router, $routeName, $action = null) {
 		$this->pdo = new \PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
@@ -25,6 +25,12 @@ class FrontController {
 		
 		//Run the controller action
 		if(!empty($action) && method_exists($this->controller, $action)) $this->controller->{$action}();
+                
+                // load TWIG
+                $loader = new Twig_Loader_Filesystem(realpath(__DIR__ .DS.'..'.DS.'..') . "/site/themes/".TPL_DEFAULT."/templates/"); // *!* replace TPL_DEFAULT with $theme
+                $this->twig = new Twig_Environment($loader, array(
+                    'cache' => realpath(__DIR__ .DS.'..'.DS.'..') . "/cache/compilation/",
+                ));
 	}
 	
 	public function getRouteName() {
@@ -41,11 +47,16 @@ class FrontController {
 		return $this->view;
 	}
 	
-	
-	public function output() {
-		$header = $this->view->getTemplate();
+        public function output() {
+                var_dump($this->twig);
+                /*$template = $this->getTwig()->load('index.html');
+                $header = $template->render(array('the' => 'variables', 'go' => 'here'));
+                */
+                /*
+                $header = $this->view->getTemplate();
 		$footer = $this->view->getTemplate("footer");
-		
+		*/
+                
 		$nav = $this->view->output($this->routeName, "nav");
 		
 		var_dump($nav); // *!* test

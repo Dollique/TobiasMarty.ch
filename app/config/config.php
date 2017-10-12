@@ -15,7 +15,7 @@ const DEF_ROUTE = 'pages'; // default route
 
 // Template config
 const TPL_PATH = 'templates' . DS;
-const TPL_DEFAULT = 'default';
+const TPL_DEFAULT = 'tobiasmarty';
 
 
 // General config

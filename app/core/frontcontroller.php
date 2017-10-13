@@ -26,10 +26,10 @@ class FrontController {
 		//Run the controller action
 		if(!empty($action) && method_exists($this->controller, $action)) $this->controller->{$action}();
                 
-                $this->path_to_tmp = "/site/themes/".TPL_DEFAULT."/templates/";
+                $this->path_to_tmp = "/public/site/themes/".TPL_DEFAULT."/templates/";
                 
                 // load TWIG
-                $loader = new \Twig_Loader_Filesystem(realpath(__DIR__ .DS.'..'.DS.'..') . $this->path_to_tmp); // *!* replace TPL_DEFAULT with $theme
+                $loader = new \Twig_Loader_Filesystem(realpath(__DIR__ .DS.'..') . $this->path_to_tmp); // *!* replace TPL_DEFAULT with $theme
                 $this->twig = new \Twig_Environment($loader, array(
                     'cache' => realpath(__DIR__ .DS.'..'.DS.'..') . "/cache/compilation/",
                 ));

@@ -4,7 +4,7 @@ namespace app\core;
 
 class FrontController {
     public $pdo;
-	private $route, $routeName, $model, $controller, $view, $twig;
+	private $route, $routeName, $model, $controller, $view, $twig, $path_to_tmp;
 	
 	public function __construct(Router $router, $routeName, $action = null) {
 		$this->pdo = new \PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
@@ -26,11 +26,25 @@ class FrontController {
 		//Run the controller action
 		if(!empty($action) && method_exists($this->controller, $action)) $this->controller->{$action}();
                 
+                $this->path_to_tmp = "/site/themes/".TPL_DEFAULT."/templates/";
+                
                 // load TWIG
-                $loader = new Twig_Loader_Filesystem(realpath(__DIR__ .DS.'..'.DS.'..') . "/site/themes/".TPL_DEFAULT."/templates/"); // *!* replace TPL_DEFAULT with $theme
-                $this->twig = new Twig_Environment($loader, array(
+                $loader = new \Twig_Loader_Filesystem(realpath(__DIR__ .DS.'..'.DS.'..') . $this->path_to_tmp); // *!* replace TPL_DEFAULT with $theme
+                $this->twig = new \Twig_Environment($loader, array(
                     'cache' => realpath(__DIR__ .DS.'..'.DS.'..') . "/cache/compilation/",
                 ));
+                
+                $twf_url = new \Twig_Function('url', function($url) {
+                    if(!is_string($url) && $url === true) return "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                    else {
+                       $url = str_replace('theme://', dirname($_SERVER['REQUEST_URI']) . $this->path_to_tmp, $url);
+                    }
+                    
+                    return $url;
+                });
+                $this->twig->addFunction($twf_url);
+                
+                
 	}
 	
 	public function getRouteName() {
@@ -48,24 +62,27 @@ class FrontController {
 	}
 	
         public function output() {
-                var_dump($this->twig);
-                /*$template = $this->getTwig()->load('index.html');
-                $header = $template->render(array('the' => 'variables', 'go' => 'here'));
-                */
-                /*
-                $header = $this->view->getTemplate();
-		$footer = $this->view->getTemplate("footer");
-		*/
-                
-		$nav = $this->view->output($this->routeName, "nav");
-		
-		var_dump($nav); // *!* test
+                $nav = $this->view->output($this->routeName, "nav");
+		//var_dump($nav); // *!* test
 		
 		$page = $this->view->output($this->routeName);
-		
-		$title = $page["title"];
+                $title = $page["title"];
 		$content = $page["content"];
-		
-		return $header . "<h1>" . $title . "</h1>" . $content . $footer;
+                
+                $content_array = array(
+                    'config' => array(
+                        'site' => array(
+                            'title' => $title
+                        )
+                    ),
+                    'page' => array(
+                        'content' => $content,
+                        'footer' => 'This is the footer'
+                    )
+                );
+                
+                $return = $this->twig->render('content.html.twig', $content_array);
+                
+		return $return;
 	}
 }

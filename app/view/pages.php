@@ -18,9 +18,10 @@ class pages {
 		$nav = $this->model->loadPage($alias); // get page data from database *!* use later for 'current' class
 		$navRet = $this->createNav(); // $nav
 		
-                echo "<pre> RESULT: ---";
-                print_r($navRet);
-                echo "</pre>";
+		// *!* WORK HERE !!!
+		/*echo "<pre> RESULT: ---";
+		print_r($navRet);
+		echo "</pre>";*/
 	}
 	
         // I got help on SO: https://stackoverflow.com/questions/45940902/recursive-nested-navigation-with-php/45947793
@@ -61,7 +62,7 @@ class pages {
 		
 		switch ($table) {
 			case "pages": return $this->renderPage($alias);
-                        case "nav": return $this->renderNav($alias);
+			case "nav": return $this->renderNav($alias);
 		}
 	}
 }

@@ -6,8 +6,8 @@ class pages {
 	private $pdo;
 	private $page;
 	
-	public function __construct(\PDO $pdo) { // (PDO $pdo)
-		$this->pdo = $pdo;
+	public function __construct() { // (PDO $pdo)
+		$this->pdo = new \PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
 	}
 	
 	public function loadPage($data, $field = "alias") {

@@ -3,12 +3,9 @@
 namespace app\core;
 
 class FrontController {
-	public $pdo;
 	private $route, $routeName, $model, $controller, $view, $twig, $path_to_tmp;
-
+	
 	public function __construct(Router $router, $routeName, $action = null) {
-		$this->pdo = new \PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
-
 		//Fetch a route based on a name, e.g. "search" or "list" or "edit"
 		$this->route = $router->getRoute($routeName);
 		$this->routeName = $routeName;
@@ -17,9 +14,9 @@ class FrontController {
 		$modelName = "\app\model\\".$this->route->model;
 		$controllerName = "\app\controller\\".$this->route->controller;
 		$viewName = "\app\\view\\".$this->route->view;
-
+		
 		//Instantiate each component
-		$this->model = new $modelName($this->pdo);
+		$this->model = new $modelName();
 		$this->controller = new $controllerName($this->model);
 		$this->view = new $viewName($this->model);
 
@@ -83,7 +80,7 @@ class FrontController {
 		return $this->view;
 	}
 
-		public function output() {
+	public function output() {
 		$nav = $this->view->output($this->routeName, "nav");
 		//var_dump($nav); // *!* test
 		

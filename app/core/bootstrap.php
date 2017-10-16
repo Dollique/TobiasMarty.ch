@@ -1,27 +1,11 @@
 <?php
 
-use app\core\FrontController;
-use app\core\Router;
+namespace app\core;
 
 // include configuration, database and autoloader
-require_once(realpath(__DIR__ .DS.'..') . "/config/config.php");
-require_once(realpath(__DIR__ .DS.'..') . "/config/db.php");
-require_once(realpath(__DIR__ .DS.'..'.DS.'..') . "/vendor/autoloader.php"); // autoload for the core MVC Framework
+require_once(ROOT . "app/config/config.php");
+require_once(ROOT . "app/config/db.php");
+require_once(ROOT . "vendor/autoloader.php"); // autoload for the core MVC Framework
 
 // load composer autoloader
-require_once(realpath(__DIR__ .DS.'..'.DS.'..') . "/vendor/autoload.php");
-
-// set routes
-$route = isset($_GET['route']) ? $_GET['route'] : null;
-$action = isset($_GET['action']) ? $_GET['action'] : null;
-
-// get FrontController
-$fc = new FrontController(new Router, $route, $action);
-
-//$model = $fc->getModel();
-//$controller = $fc->getController();
-//$view = $fc->getView();
-
-//if(isset($_GET['action']) && method_exists($controller, $_GET['action'])) $controller->{$_GET['action']}();
-
-echo $fc->output();
+require_once(ROOT . "vendor/autoload.php");

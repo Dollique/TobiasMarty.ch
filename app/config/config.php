@@ -3,10 +3,8 @@
 // Path config
 if(!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
 
-if($_SERVER['DOCUMENT_ROOT'] == "C:/xampp/htdocs") { // if local *!* bad practise!
-	define('BASE_DIR', "//localhost".dirname($_SERVER['SCRIPT_NAME']).DS);
-}
-else define('BASE_DIR', DS . 'demo' . DS); // *!* TO BE REPLACED!
+// Define root path
+if(!defined('ROOT')) define('ROOT', realpath(__DIR__ .DS.'..'.DS.'..').DS); // path: /app/public/index.php
 
 
 // default route

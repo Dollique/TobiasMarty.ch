@@ -29,9 +29,9 @@
 
 <ul class="navigation">
     {% if theme_config.dropdown.enabled %}
-        {{ _self.loop(pages) }}
+        {{ _self.loop(page.nav) }}
     {% else %}
-        {% for page in pages.children.visible %}
+        {% for page in page.nav %}
             {% set current_page = (page.active or page.activeChild) ? 'active' : '' %}
             <li class="{{ current_page }}">
                 <a href="{{ page.url }}">

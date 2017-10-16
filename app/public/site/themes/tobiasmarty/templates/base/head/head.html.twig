@@ -11,13 +11,13 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
 	
     {% block stylesheets %}
-        {% do assets.addCss('theme://css-compiled/template.css', 101) %}
+        {{ url('theme://css/style.css', 'css') }}
     {% endblock %}
-    {{ assets.css() }}
+    {#{{ assets.retCSS() }} #}
 	
     {% block javascripts %}
-        {% do assets.addJs('jquery', 101) %}
-        {% do assets.addJs('theme://js/nav.js') %}
+        {{ url('jquery', 'js') }}
+        {#{ url('theme://js/nav.js', 'js') }#}
     {% endblock %}
     {{ assets.js() }}
 {% endblock head %}

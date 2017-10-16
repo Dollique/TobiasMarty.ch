@@ -1,18 +1,20 @@
 {% block header %}
 <header id="header">
-    <div id="logo">
-        <h2>{{ config.site.title }}</h2>
-    </div>
-    
-    <nav>
-        {% include 'base/nav.html.twig' %}
-    </nav>
+	<div id="logo">
+		<h2>{{ config.site.title }}</h2>
+	</div>
+
+	<nav>
+		{% include 'base/nav.html.twig' %}
+	</nav>
 </header>
 {% endblock %}
 
 {% block body %}
 <section id="body" class="{{ class }}">
-        {% block content %}{% endblock %}
+	{% block content %}
+		{{ page.content|raw }}
+	{% endblock %}
 </section>
 {% endblock %}
 

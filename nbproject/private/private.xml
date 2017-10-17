@@ -16,8 +16,11 @@
             <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/public/site/themes/tobiasmarty/templates/base/body.html.twig</file>
             <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/core/bootstrap.php</file>
             <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/public/site/themes/tobiasmarty/templates/base/structure.html.twig</file>
+            <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/public/site/themes/tobiasmarty/templates/base/nav.html.twig</file>
             <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/public/site/themes/tobiasmarty/templates/base/head/head.html.twig</file>
             <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/core/frontcontroller.php</file>
+            <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/public/index.php</file>
+            <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/model/pages.php</file>
             <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/view/pages.php</file>
         </group>
     </open-files>

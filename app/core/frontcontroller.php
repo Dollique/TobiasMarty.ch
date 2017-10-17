@@ -9,7 +9,7 @@ class FrontController {
 		//Fetch a route based on a name, e.g. "search" or "list" or "edit"
 		$this->route = $router->getRoute($routeName);
 		$this->routeName = $routeName;
-
+		
 		//Fetch the names of each component from the router
 		$modelName = "\app\model\\".$this->route->model;
 		$controllerName = "\app\controller\\".$this->route->controller;
@@ -19,16 +19,16 @@ class FrontController {
 		$this->model = new $modelName();
 		$this->controller = new $controllerName($this->model);
 		$this->view = new $viewName($this->model);
-
+		
 		//Run the controller action
 		if(!empty($action) && method_exists($this->controller, $action)) $this->controller->{$action}();
-
-		$this->path_to_tmp = "/public/site/themes/".TPL_DEFAULT."/";
 		
 		/* 
 		 * START TWIG
 		 * Loading Twig + Adding TWIG Functions!
 		 */
+		
+		$this->path_to_tmp = "/public/site/themes/".TPL_DEFAULT."/";
 		
 		// load TWIG
 		$loader = new \Twig_Loader_Filesystem(realpath(__DIR__ .DS.'..') . $this->path_to_tmp . "/templates/"); // *!* replace TPL_DEFAULT with $theme

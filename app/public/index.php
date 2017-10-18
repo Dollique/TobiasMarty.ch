@@ -14,6 +14,7 @@ if(!defined('ROOT')) define('ROOT', realpath(__DIR__ .DS.'..'.DS.'..').DS); // p
 // Use Namespaces needed for FrontController
 use app\core\FrontController;
 use app\core\Router;
+use app\core\DIC;
 
 // Include Bootstrapping File
 require_once(ROOT ."app/core/bootstrap.php");
@@ -31,4 +32,7 @@ $fc = new FrontController(new Router, $route, $action);
 
 //if(isset($_GET['action']) && method_exists($controller, $_GET['action'])) $controller->{$_GET['action']}();
 
-echo $fc->output();
+$page = DIC::getInstanceOf("app\controller\pagesController");
+echo $page->output();
+
+//echo $fc->output();

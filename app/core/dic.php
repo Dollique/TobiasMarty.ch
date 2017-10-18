@@ -6,6 +6,8 @@
  * tutorial used: http://krasimirtsonev.com/blog/article/Dependency-Injection-in-PHP-example-how-to-DI-create-your-own-dependency-injection-container
  */
 
+namespace app\core;
+
 class DIC {
 	
 	private static $map;
@@ -48,7 +50,7 @@ class DIC {
 		if(!class_exists($className)) throw new Exception("DI: missing class \"$className\"");
 		
 		// initialize the ReflectionClass
-		$reflection = new ReflectionClass($className);
+		$reflection = new \ReflectionClass($className);
 		
 		// create an instance of the class
 		if($arguments === null || count($arguments) == 0) {
@@ -91,5 +93,8 @@ class DIC {
 				}
 			}
 		}
+		
+		// return the created instance
+		return $obj;
 	}
 }

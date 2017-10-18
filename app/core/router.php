@@ -6,7 +6,7 @@ class Router {
     private $table = array();
 	
     public function __construct() {
-		$this->table['pages'] = new Route('pages', 'pages', 'pages'); // model, view, controller
+		$this->table['pages'] = new Route('pagesModel', 'pagesView', 'pagesController'); // model, view, controller
 		//$this->table['someotherroute'] = new Route('OtherModel', 'OtherView', 'OtherController');
     }
 	

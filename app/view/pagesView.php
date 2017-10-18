@@ -2,20 +2,22 @@
 
 namespace app\view;
 
-class pages {
-    private $model;
+/**
+* @Inject \app\model\pagesModel
+*/
+class pagesView {
 	
-    public function __construct(\app\model\pages $model) {
-        $this->model = $model;
+    public function __construct() {
+        
     }
 	
     private function renderPage($alias) {
-		$page = $this->model->loadPage($alias);
+		$page = $this->pagesModel->loadPage($alias);
 		return $page;
     }
 	
 	private function renderNav($alias) {
-		$nav = $this->model->loadPage($alias); // get page data from database *!* use later for 'current' class
+		$nav = $this->pagesModel->loadPage($alias); // get page data from database *!* use later for 'current' class
 		$navRet = $this->createNav(); // $nav
 		
 		// *!* WORK HERE !!!
@@ -27,7 +29,7 @@ class pages {
         // I got help on SO: https://stackoverflow.com/questions/45940902/recursive-nested-navigation-with-php/45947793
 	private function createNav($parent = 0) {
             // *!* Create Nav
-            $getNavPage = $this->model->loadNav($parent); // array of menu items (fk_page) that have $parent as parent.
+            $getNavPage = $this->pagesModel->loadNav($parent); // array of menu items (fk_page) that have $parent as parent.
             
             if(empty($getNavPage)) return $parent; // if there is no more child then return the $parent as an INT
             

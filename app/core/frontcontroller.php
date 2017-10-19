@@ -5,7 +5,7 @@ namespace app\core;
 class FrontController {
 	private $route, $model, $controller, $view;
 	
-	public function __construct($router, $action = null) {
+	public function __construct($router) {
 		//Fetch a route based on a name, e.g. "search" or "list" or "edit"
 		$this->route = $router;
 		
@@ -18,5 +18,10 @@ class FrontController {
 		DIC::mapClass($viewName, $this->route->view);
 		DIC::mapClassAsSingleton($modelName, $this->route->model);
 		DIC::mapClassAsSingleton('\app\core\twig', "twig");
+	}
+	
+	public function show() {
+		$page = DIC::getInstanceOf("\app\controller\\".$this->route->controller);
+		return $page->output();
 	}
 }

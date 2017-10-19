@@ -19,16 +19,8 @@ use app\core\DIC;
 // Include Bootstrapping File
 require_once(ROOT ."app/core/bootstrap.php");
 
-// set routes
-$route = isset($_GET['route']) ? $_GET['route'] : null;
-$action = isset($_GET['action']) ? $_GET['action'] : null;
-
-// get FrontController
-$fc = new FrontController(Router::getRoute($route), $action);
-
 //if(isset($_GET['action']) && method_exists($controller, $_GET['action'])) $controller->{$_GET['action']}();
 
-$page = DIC::getInstanceOf("app\controller\pagesController");
-echo $page->output();
-
-//echo $fc->output();
+// get FrontController
+$fc = new FrontController(Router::createRoute());
+echo $fc->show();

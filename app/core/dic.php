@@ -72,19 +72,21 @@ class DIC {
 						$key = str_replace("\n", "", $key);
 						$key = str_replace("\r", "", $key);
 						
+						$objkey = self::$map->$key->value; // get the value of the mapped object and use it in the injected instance.
+						
 						if(isset(self::$map->$key)) {
 							switch(self::$map->$key->type) {
 								case "value":
-									$obj->$key = self::$map->$key->value;
+									$obj->$objkey = self::$map->$key->value;
 								break;
 								case "class":
-									$obj->$key = self::getInstanceOf(self::$map->$key->value, self::$map->$key->arguments);
+									$obj->$objkey = self::getInstanceOf($key, self::$map->$key->arguments);
 								break;
 								case "classSingleton":
 									if(self::$map->$key->instance === null) {
-										$obj->$key = self::$map->$key->instance = self::getInstanceOf(self::$map->$key->value, self::$map->$key->arguments);
+										$obj->$objkey = self::$map->$key->instance = self::getInstanceOf($key, self::$map->$key->arguments);
 									} else {
-										$obj->$key = self::$map->$key->instance;
+										$obj->$objkey = self::$map->$key->instance;
 									}
 								break;
 							}

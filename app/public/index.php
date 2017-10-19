@@ -26,13 +26,12 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 // get FrontController
 $fc = new FrontController(new Router, $route, $action);
 
-//$model = $fc->getModel();
-//$controller = $fc->getController();
-//$view = $fc->getView();
-
 //if(isset($_GET['action']) && method_exists($controller, $_GET['action'])) $controller->{$_GET['action']}();
 
-$page = DIC::getInstanceOf("app\controller\pagesController");
+$getRoute = $fc->getRoute();
+var_dump($getRoute);
+
+$page = DIC::getInstanceOf("app\controller\pagesController", $getRoute);
 echo $page->output();
 
 //echo $fc->output();

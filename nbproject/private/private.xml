@@ -12,16 +12,19 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/public/site/themes/tobiasmarty/templates/content.html.twig</file>
             <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/public/site/themes/tobiasmarty/templates/base/body.html.twig</file>
-            <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/core/bootstrap.php</file>
             <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/public/site/themes/tobiasmarty/templates/base/structure.html.twig</file>
+            <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/view/pagesView.php</file>
+            <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/core/router.php</file>
+            <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/core/frontcontroller.php</file>
+            <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/core/dic.php</file>
+            <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/public/site/themes/tobiasmarty/templates/content.html.twig</file>
+            <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/core/bootstrap.php</file>
+            <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/model/pagesModel.php</file>
             <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/public/site/themes/tobiasmarty/templates/base/nav.html.twig</file>
             <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/public/site/themes/tobiasmarty/templates/base/head/head.html.twig</file>
-            <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/core/frontcontroller.php</file>
             <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/public/index.php</file>
-            <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/model/pages.php</file>
-            <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/view/pages.php</file>
+            <file>file:/C:/xampp/htdocs/pages/tobiasmarty/app/controller/pagesController.php</file>
         </group>
     </open-files>
 </project-private>

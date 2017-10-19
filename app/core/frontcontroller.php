@@ -3,12 +3,11 @@
 namespace app\core;
 
 class FrontController {
-	private $route, $routeName, $model, $controller, $view, $twig, $path_to_tmp;
+	private $route, $model, $controller, $view, $twig, $path_to_tmp;
 	
 	public function __construct(Router $router, $routeName, $action = null) {
 		//Fetch a route based on a name, e.g. "search" or "list" or "edit"
 		$this->route = $router->getRoute($routeName);
-		$this->routeName = $routeName;
 		
 		//Fetch the names of each component from the router
 		$modelName = "\app\model\\".$this->route->model;
@@ -20,8 +19,8 @@ class FrontController {
 		//$this->controller = new $controllerName($this->model);
 		//$this->view = new $viewName($this->model);
 		
-		DIC::mapClass($this->route->view, $viewName);
-		DIC::mapClassAsSingleton($this->route->model, $modelName);
+		DIC::mapClass($viewName, $this->route->view);
+		DIC::mapClassAsSingleton($modelName, $this->route->model);
 		
 		/* 
 		 * START TWIG
@@ -64,6 +63,10 @@ class FrontController {
 		/*
 		 * END TWIG 
 		 */
+	}
+	
+	public function getRoute() {
+		return $this->route;
 	}
 	
 }

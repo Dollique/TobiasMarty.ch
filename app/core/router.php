@@ -3,21 +3,23 @@
 namespace app\core;
 
 class Router {
-    private $table = array();
+    private static $route, $table = array();
 	
-    public function __construct() {
-		$this->table['pages'] = new Route('pagesModel', 'pagesView', 'pagesController'); // model, view, controller
-		//$this->table['someotherroute'] = new Route('OtherModel', 'OtherView', 'OtherController');
-    }
-	
-    public function getRoute($route) {
-		if(empty($route)) $route = DEF_ROUTE;
+    public static function getRoute() {
+		self::$table['pages'] = new Route('pagesModel', 'pagesView', 'pagesController'); // model, view, controller
+		//self::$table['someotherroute'] = new Route('OtherModel', 'OtherView', 'OtherController');
 		
-		$route_lc = strtolower($route);
-		$route_table = (isset($this->table[$route_lc]) ? $this->table[$route_lc] : $this->table[DEF_ROUTE]);
+		if(empty(self::$route)) self::$route = DEF_ROUTE;
+		
+		$route_lc = strtolower(self::$route);
+		$route_table = (isset(self::$table[$route_lc]) ? self::$table[$route_lc] : self::$table[DEF_ROUTE]);
 		
         return $route_table;
     }
+	
+	public static function getRouteName($mode) {
+		return self::getRoute()->$mode;
+	}
 }
 
 

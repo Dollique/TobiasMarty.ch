@@ -52,13 +52,6 @@ class pagesView {
 		return $routeA[0];
 	}
 	
-	public function getTemplate($section = "header", $tpl = TPL_DEFAULT) {
-		$getTPL = new template($tpl);
-		$renderTPL = $getTPL->render($section);
-		
-		return $renderTPL;
-	}
-	
 	public function output($routeName, $table = "pages") {
 		$alias = $this->getAlias($routeName);
 		

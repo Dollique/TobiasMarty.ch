@@ -5,6 +5,7 @@ namespace app\controller;
 /**
 * @Inject \app\model\pagesModel
 * @Inject \app\view\pagesView
+* @Inject \app\core\twig
 */
 class pagesController {
     
@@ -19,10 +20,12 @@ class pagesController {
     }
 	
 	public function output() {
-		$nav = $this->pagesView->output($this->routeName, "nav");
+		$routeView = \app\core\Router::getRouteName("view");
+		
+		$nav = $this->pagesView->output($routeView, "nav");
 		//var_dump($nav); // *!* test
 		
-		$page = $this->pagesView->output($this->routeName);
+		$page = $this->pagesView->output($routeView);
 		$title = $page["title"];
 		$content = $page["content"];
 		
@@ -38,9 +41,7 @@ class pagesController {
 				'footer' => 'This is the footer'
 			)
 		);
-
-		$return = $this->twig->render('content.html.twig', $content_array);
-
-		return $return;
+		
+		return $this->twig->renderTwig($content_array);
 	}
 }
